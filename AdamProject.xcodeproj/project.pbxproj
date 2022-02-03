@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66C3E0C427AC29A0000D36EF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C3E0C327AC29A0000D36EF /* HomeViewController.swift */; };
 		66CF15C927A99944004EBE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15C827A99944004EBE14 /* AppDelegate.swift */; };
 		66CF15CB27A99944004EBE14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15CA27A99944004EBE14 /* SceneDelegate.swift */; };
-		66CF15CD27A99944004EBE14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15CC27A99944004EBE14 /* ViewController.swift */; };
 		66CF15D027A99944004EBE14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CF15CE27A99944004EBE14 /* Main.storyboard */; };
 		66CF15D227A99944004EBE14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66CF15D127A99944004EBE14 /* Assets.xcassets */; };
 		66CF15D527A99944004EBE14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CF15D327A99944004EBE14 /* LaunchScreen.storyboard */; };
 		66CF15E027A99945004EBE14 /* AdamProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15DF27A99945004EBE14 /* AdamProjectTests.swift */; };
 		66CF15EA27A99945004EBE14 /* AdamProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15E927A99945004EBE14 /* AdamProjectUITests.swift */; };
 		66CF15EC27A99945004EBE14 /* AdamProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15EB27A99945004EBE14 /* AdamProjectUITestsLaunchTests.swift */; };
+		66CF15FB27A99B70004EBE14 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15FA27A99B70004EBE14 /* LoginViewController.swift */; };
+		66CF15FD27A99C1B004EBE14 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15FC27A99C1B004EBE14 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,10 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66C3E0C327AC29A0000D36EF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		66CF15C527A99944004EBE14 /* AdamProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdamProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CF15C827A99944004EBE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66CF15CA27A99944004EBE14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		66CF15CC27A99944004EBE14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		66CF15CF27A99944004EBE14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		66CF15D127A99944004EBE14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		66CF15D427A99944004EBE14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		66CF15E527A99945004EBE14 /* AdamProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdamProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CF15E927A99945004EBE14 /* AdamProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdamProjectUITests.swift; sourceTree = "<group>"; };
 		66CF15EB27A99945004EBE14 /* AdamProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdamProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		66CF15FA27A99B70004EBE14 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		66CF15FC27A99C1B004EBE14 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +105,13 @@
 			children = (
 				66CF15C827A99944004EBE14 /* AppDelegate.swift */,
 				66CF15CA27A99944004EBE14 /* SceneDelegate.swift */,
-				66CF15CC27A99944004EBE14 /* ViewController.swift */,
 				66CF15CE27A99944004EBE14 /* Main.storyboard */,
 				66CF15D127A99944004EBE14 /* Assets.xcassets */,
 				66CF15D327A99944004EBE14 /* LaunchScreen.storyboard */,
 				66CF15D627A99944004EBE14 /* Info.plist */,
+				66CF15FA27A99B70004EBE14 /* LoginViewController.swift */,
+				66CF15FC27A99C1B004EBE14 /* RegisterViewController.swift */,
+				66C3E0C327AC29A0000D36EF /* HomeViewController.swift */,
 			);
 			path = AdamProject;
 			sourceTree = "<group>";
@@ -258,9 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66CF15CD27A99944004EBE14 /* ViewController.swift in Sources */,
+				66C3E0C427AC29A0000D36EF /* HomeViewController.swift in Sources */,
+				66CF15FB27A99B70004EBE14 /* LoginViewController.swift in Sources */,
 				66CF15C927A99944004EBE14 /* AppDelegate.swift in Sources */,
 				66CF15CB27A99944004EBE14 /* SceneDelegate.swift in Sources */,
+				66CF15FD27A99C1B004EBE14 /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
