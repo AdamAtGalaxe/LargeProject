@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		668A4A2127AD71DE005B37F0 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668A4A2027AD71DE005B37F0 /* UserDetailViewController.swift */; };
+		668A4A2327AD7342005B37F0 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668A4A2227AD7342005B37F0 /* NewUserViewController.swift */; };
+		668A4A2527AD7361005B37F0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668A4A2427AD7361005B37F0 /* ProfileViewController.swift */; };
+		668A4A2927AD9277005B37F0 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668A4A2827AD9277005B37F0 /* HomeTableViewCell.swift */; };
+		668A4A2D27ADBC3B005B37F0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668A4A2C27ADBC3B005B37F0 /* User.swift */; };
+		668A4A2F27ADBD1A005B37F0 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668A4A2E27ADBD1A005B37F0 /* UserRepo.swift */; };
 		66C3E0C427AC29A0000D36EF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C3E0C327AC29A0000D36EF /* HomeViewController.swift */; };
 		66CF15C927A99944004EBE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15C827A99944004EBE14 /* AppDelegate.swift */; };
 		66CF15CB27A99944004EBE14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15CA27A99944004EBE14 /* SceneDelegate.swift */; };
@@ -38,6 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		668A4A2027AD71DE005B37F0 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		668A4A2227AD7342005B37F0 /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
+		668A4A2427AD7361005B37F0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		668A4A2827AD9277005B37F0 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		668A4A2C27ADBC3B005B37F0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		668A4A2E27ADBD1A005B37F0 /* UserRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
 		66C3E0C327AC29A0000D36EF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		66CF15C527A99944004EBE14 /* AdamProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdamProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CF15C827A99944004EBE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +92,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		668A4A2A27ADBC0D005B37F0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				668A4A2C27ADBC3B005B37F0 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		668A4A2B27ADBC1F005B37F0 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				668A4A2E27ADBD1A005B37F0 /* UserRepo.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		668A4A3027ADD890005B37F0 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				66CF15CE27A99944004EBE14 /* Main.storyboard */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		66CF15BC27A99943004EBE14 = {
 			isa = PBXGroup;
 			children = (
@@ -103,15 +139,21 @@
 		66CF15C727A99944004EBE14 /* AdamProject */ = {
 			isa = PBXGroup;
 			children = (
+				668A4A2B27ADBC1F005B37F0 /* Repositories */,
+				668A4A2A27ADBC0D005B37F0 /* Models */,
 				66CF15C827A99944004EBE14 /* AppDelegate.swift */,
 				66CF15CA27A99944004EBE14 /* SceneDelegate.swift */,
-				66CF15CE27A99944004EBE14 /* Main.storyboard */,
+				668A4A3027ADD890005B37F0 /* New Group */,
 				66CF15D127A99944004EBE14 /* Assets.xcassets */,
 				66CF15D327A99944004EBE14 /* LaunchScreen.storyboard */,
 				66CF15D627A99944004EBE14 /* Info.plist */,
 				66CF15FA27A99B70004EBE14 /* LoginViewController.swift */,
 				66CF15FC27A99C1B004EBE14 /* RegisterViewController.swift */,
 				66C3E0C327AC29A0000D36EF /* HomeViewController.swift */,
+				668A4A2227AD7342005B37F0 /* NewUserViewController.swift */,
+				668A4A2027AD71DE005B37F0 /* UserDetailViewController.swift */,
+				668A4A2427AD7361005B37F0 /* ProfileViewController.swift */,
+				668A4A2827AD9277005B37F0 /* HomeTableViewCell.swift */,
 			);
 			path = AdamProject;
 			sourceTree = "<group>";
@@ -266,9 +308,15 @@
 			files = (
 				66C3E0C427AC29A0000D36EF /* HomeViewController.swift in Sources */,
 				66CF15FB27A99B70004EBE14 /* LoginViewController.swift in Sources */,
+				668A4A2F27ADBD1A005B37F0 /* UserRepo.swift in Sources */,
+				668A4A2127AD71DE005B37F0 /* UserDetailViewController.swift in Sources */,
 				66CF15C927A99944004EBE14 /* AppDelegate.swift in Sources */,
 				66CF15CB27A99944004EBE14 /* SceneDelegate.swift in Sources */,
 				66CF15FD27A99C1B004EBE14 /* RegisterViewController.swift in Sources */,
+				668A4A2927AD9277005B37F0 /* HomeTableViewCell.swift in Sources */,
+				668A4A2527AD7361005B37F0 /* ProfileViewController.swift in Sources */,
+				668A4A2D27ADBC3B005B37F0 /* User.swift in Sources */,
+				668A4A2327AD7342005B37F0 /* NewUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

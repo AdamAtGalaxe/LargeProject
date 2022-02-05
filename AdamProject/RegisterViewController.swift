@@ -28,6 +28,15 @@ class RegisterViewController: UIViewController {
         
     }
     /*
+    if UIImagePickerController.isSourceTypeAvailable(.camera){
+        picker.sourceType = .camera
+    }
+    else if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+        picker.sourceType = .photoLibrary
+    }
+    picker.delegate = self
+    self.present(picker, animated: true, completion: nil)*/
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
