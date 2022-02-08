@@ -11,7 +11,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var users = UserRepo().getUsers()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        //super.viewDidLoad()
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [#colorLiteral(red: 0.1529411765, green: 0.6666666667, blue: 0.8823529412, alpha: 1).cgColor, #colorLiteral(red: 0.06274509804, green: 0.4470588235, blue: 0.7294117647, alpha: 1).cgColor]

@@ -14,6 +14,7 @@
 		668A4A2D27ADBC3B005B37F0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668A4A2C27ADBC3B005B37F0 /* User.swift */; };
 		668A4A2F27ADBD1A005B37F0 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668A4A2E27ADBD1A005B37F0 /* UserRepo.swift */; };
 		66C3E0C427AC29A0000D36EF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C3E0C327AC29A0000D36EF /* HomeViewController.swift */; };
+		66C40BD027B2CC2F003D7B67 /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C40BCF27B2CC2F003D7B67 /* ViewControllerExtension.swift */; };
 		66CF15C927A99944004EBE14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15C827A99944004EBE14 /* AppDelegate.swift */; };
 		66CF15CB27A99944004EBE14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CF15CA27A99944004EBE14 /* SceneDelegate.swift */; };
 		66CF15D027A99944004EBE14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CF15CE27A99944004EBE14 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		668A4A2C27ADBC3B005B37F0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		668A4A2E27ADBD1A005B37F0 /* UserRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
 		66C3E0C327AC29A0000D36EF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		66C40BCF27B2CC2F003D7B67 /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
 		66CF15C527A99944004EBE14 /* AdamProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdamProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CF15C827A99944004EBE14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66CF15CA27A99944004EBE14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				668A4A2027AD71DE005B37F0 /* UserDetailViewController.swift */,
 				668A4A2427AD7361005B37F0 /* ProfileViewController.swift */,
 				668A4A2827AD9277005B37F0 /* HomeTableViewCell.swift */,
+				66C40BCF27B2CC2F003D7B67 /* ViewControllerExtension.swift */,
 			);
 			path = AdamProject;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				66CF15CB27A99944004EBE14 /* SceneDelegate.swift in Sources */,
 				66CF15FD27A99C1B004EBE14 /* RegisterViewController.swift in Sources */,
 				668A4A2927AD9277005B37F0 /* HomeTableViewCell.swift in Sources */,
+				66C40BD027B2CC2F003D7B67 /* ViewControllerExtension.swift in Sources */,
 				668A4A2527AD7361005B37F0 /* ProfileViewController.swift in Sources */,
 				668A4A2D27ADBC3B005B37F0 /* User.swift in Sources */,
 				668A4A2327AD7342005B37F0 /* NewUserViewController.swift in Sources */,
