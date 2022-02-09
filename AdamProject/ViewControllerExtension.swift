@@ -36,7 +36,6 @@ extension UIViewController{
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.startAnimating()
         indicator.frame = CGRect(x: 20, y: baseView.frame.height/2-15, width:30, height:30)
-        
         baseView.addSubview(indicator)
         
         let msg = UILabel(frame: CGRect(x: 50, y:20, width: baseView.frame.width-60, height: 80))

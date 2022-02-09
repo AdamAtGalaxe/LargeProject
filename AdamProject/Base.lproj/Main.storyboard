@@ -42,6 +42,7 @@
                                     <fontDescription key="titleFontDescription" type="system" pointSize="28"/>
                                 </buttonConfiguration>
                                 <connections>
+                                    <action selector="loginUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qIc-eC-Ls3"/>
                                     <segue destination="A8l-BH-bex" kind="show" id="dwD-mZ-knH"/>
                                 </connections>
                             </button>
@@ -95,6 +96,8 @@
                     </view>
                     <connections>
                         <outlet property="backgroundGradientView" destination="8bC-Xf-vdC" id="8cq-Ss-XIb"/>
+                        <outlet property="emailField" destination="bjb-x5-r4g" id="62Y-IW-s3C"/>
+                        <outlet property="passwordField" destination="Jpy-Lf-ROM" id="CA8-jq-xFl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

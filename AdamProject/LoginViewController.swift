@@ -9,7 +9,9 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var emailField: UITextField!
     
+    @IBOutlet weak var passwordField: UITextField!
     @IBOutlet var backgroundGradientView: UIView!
     
     override func viewDidLoad() {
@@ -23,17 +25,56 @@ class LoginViewController: UIViewController {
 
     }
     override func viewDidAppear(_ animated: Bool) {
-        var network = "NA"
-        if network != "Available" {
-            //showAlert(title: "Network Alert", message: "Please check your network. You are not connected to the internet")
-            showIndicator(message: "test")
-        }
+//        if Utilities.isNetworkAvailable(){
+//            showAlert(title: "Network Alert", message: "Please check your network. You are not connected to the internet")
+//            //showIndicator(message: "test")
+//            return
+//        }
     }
     
     @IBAction func alert(_ sender: Any) {
         
     }
     
+    @IBAction func loginUser(_ sender: Any) {
+        if emailField.text!.isEmpty || passwordField.text!.isEmpty {
+            showAlert(title: "Field Error", message: "Both Email and Password are mandatory")
+            return
+        }
+        print(Utilities.isNetworkAvailable() )
+        if Utilities.isNetworkAvailable() == false{
+            showAlert(title: "Network Alert", message: "Please check your network. You are not connected to the internet")
+            //showIndicator(message: "test")
+            return
+        }
+        self.showIndicator(message: "Authenticating")
+        
+        let loginURL = BASE_URL + LOGIN
+        
+        var loginRequest = URLRequest(url: URL(string: loginURL)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
+        
+        let params = ["email" : emailField.text, "password": passwordField.text]
+        
+        loginRequest.httpBody = try?JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+        
+        URLSession.shared.dataTask(with: loginRequest){ (data, response, error) in
+           
+            guard let Data = data, error == nil else{
+                
+                return
+            }
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200
+            {
+                return
+            }
+            DispatchQueue.main.async {
+                self.getData(data: Data)
+            }
+        }.resume()
+    }
+    func getData(data: Data){
+        return
+    }
     /*
     // MARK: - Navigation
 
