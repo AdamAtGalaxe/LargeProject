@@ -234,9 +234,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YfJ-UT-r8J">
-                                <rect key="frame" x="0.0" y="56" width="428" height="848"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YfJ-UT-r8J">
+                                <rect key="frame" x="0.0" y="88" width="428" height="804"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="User" rowHeight="120" id="0NF-Bq-2xE" customClass="HomeTableViewCell" customModule="AdamProject" customModuleProvider="target">
@@ -246,41 +245,35 @@
                                             <rect key="frame" x="0.0" y="0.0" width="428" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Jimmy Kimmel" translatesAutoresizingMaskIntoConstraints="NO" id="esu-Gm-mgt">
-                                                    <rect key="frame" x="20" y="8" width="128" height="104"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="128" id="52J-cx-SS4"/>
-                                                        <constraint firstAttribute="width" secondItem="esu-Gm-mgt" secondAttribute="height" multiplier="16:13" id="e6S-fP-zox"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JoeSmith@Juno.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wyc-eg-vdF">
-                                                    <rect key="frame" x="156" y="66.333333333333329" width="252" height="28.666666666666671"/>
+                                                    <rect key="frame" x="125" y="66" width="283" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joe Smith" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKV-kf-R5O">
-                                                    <rect key="frame" x="156" y="19" width="252" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="AKV-kf-R5O" secondAttribute="height" multiplier="36:5" id="Vje-Nj-HWx"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="125" y="11" width="283" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Jimmy Mamba" translatesAutoresizingMaskIntoConstraints="NO" id="esu-Gm-mgt">
+                                                    <rect key="frame" x="20" y="0.0" width="97" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="97" id="4CJ-rx-EvV"/>
+                                                        <constraint firstAttribute="width" secondItem="esu-Gm-mgt" secondAttribute="height" multiplier="97:120" id="xzU-9O-YSH"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="AKV-kf-R5O" firstAttribute="leading" secondItem="esu-Gm-mgt" secondAttribute="trailing" constant="8" symbolic="YES" id="9Vz-CX-cOg"/>
-                                                <constraint firstItem="AKV-kf-R5O" firstAttribute="top" secondItem="nWo-hh-4at" secondAttribute="topMargin" constant="8" id="9WF-xC-1Lv"/>
-                                                <constraint firstItem="Wyc-eg-vdF" firstAttribute="leading" secondItem="esu-Gm-mgt" secondAttribute="trailing" constant="8" symbolic="YES" id="dSz-6s-5W6"/>
-                                                <constraint firstItem="esu-Gm-mgt" firstAttribute="centerY" secondItem="nWo-hh-4at" secondAttribute="centerY" id="em8-5I-Gvu"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Wyc-eg-vdF" secondAttribute="bottom" constant="14" id="fEr-5a-c8X"/>
-                                                <constraint firstItem="AKV-kf-R5O" firstAttribute="top" secondItem="nWo-hh-4at" secondAttribute="topMargin" constant="8" id="mCX-DB-ANA"/>
-                                                <constraint firstItem="esu-Gm-mgt" firstAttribute="top" secondItem="nWo-hh-4at" secondAttribute="topMargin" constant="-3" id="nrn-ii-7ng"/>
-                                                <constraint firstItem="Wyc-eg-vdF" firstAttribute="trailing" secondItem="nWo-hh-4at" secondAttribute="trailingMargin" id="sRa-Bg-ZND"/>
-                                                <constraint firstItem="AKV-kf-R5O" firstAttribute="trailing" secondItem="nWo-hh-4at" secondAttribute="trailingMargin" id="t08-dK-XTg"/>
-                                                <constraint firstItem="AKV-kf-R5O" firstAttribute="trailing" secondItem="nWo-hh-4at" secondAttribute="trailingMargin" id="taZ-IC-eMo"/>
-                                                <constraint firstItem="esu-Gm-mgt" firstAttribute="leading" secondItem="nWo-hh-4at" secondAttribute="leadingMargin" id="znT-3x-0k3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Wyc-eg-vdF" secondAttribute="bottom" constant="14" id="81W-LF-fOO"/>
+                                                <constraint firstItem="esu-Gm-mgt" firstAttribute="top" secondItem="nWo-hh-4at" secondAttribute="top" id="Jqi-ct-NLu"/>
+                                                <constraint firstItem="esu-Gm-mgt" firstAttribute="leading" secondItem="nWo-hh-4at" secondAttribute="leading" constant="20" symbolic="YES" id="VrS-py-vab"/>
+                                                <constraint firstItem="Wyc-eg-vdF" firstAttribute="trailing" secondItem="nWo-hh-4at" secondAttribute="trailingMargin" id="XqW-Db-BvN"/>
+                                                <constraint firstItem="AKV-kf-R5O" firstAttribute="trailing" secondItem="nWo-hh-4at" secondAttribute="trailingMargin" id="e6S-n1-dnJ"/>
+                                                <constraint firstItem="Wyc-eg-vdF" firstAttribute="leading" secondItem="esu-Gm-mgt" secondAttribute="trailing" constant="8" symbolic="YES" id="e9I-c4-P9t"/>
+                                                <constraint firstItem="AKV-kf-R5O" firstAttribute="leading" secondItem="esu-Gm-mgt" secondAttribute="trailing" constant="8" symbolic="YES" id="lgQ-qU-cur"/>
+                                                <constraint firstItem="AKV-kf-R5O" firstAttribute="top" secondItem="nWo-hh-4at" secondAttribute="topMargin" id="ukL-jl-BOB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -299,6 +292,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sQL-Dh-iPC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YfJ-UT-r8J" firstAttribute="trailing" secondItem="sQL-Dh-iPC" secondAttribute="trailing" id="29u-Xx-Uhx"/>
+                            <constraint firstItem="YfJ-UT-r8J" firstAttribute="bottom" secondItem="sQL-Dh-iPC" secondAttribute="bottom" id="L4j-E3-FqY"/>
+                            <constraint firstItem="YfJ-UT-r8J" firstAttribute="top" secondItem="sQL-Dh-iPC" secondAttribute="top" id="Y5B-v7-65w"/>
+                            <constraint firstItem="YfJ-UT-r8J" firstAttribute="leading" secondItem="sQL-Dh-iPC" secondAttribute="leading" id="YPt-5d-RG4"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="581-BV-qbm">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="C5g-7O-34Z">
@@ -307,10 +306,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="userTableView" destination="YfJ-UT-r8J" id="33y-ie-YaK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YZ2-xA-bIm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2027" y="69"/>
+            <point key="canvasLocation" x="2025.700934579439" y="68.682505399568043"/>
         </scene>
         <!--New User View Controller-->
         <scene sceneID="9vZ-zL-DwW">
@@ -420,7 +422,7 @@
     </scenes>
     <resources>
         <image name="GalaxE" width="1280" height="218"/>
-        <image name="Jimmy Kimmel" width="256" height="208"/>
+        <image name="Jimmy Mamba" width="256" height="208"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

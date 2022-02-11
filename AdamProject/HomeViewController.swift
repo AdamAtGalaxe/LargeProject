@@ -6,9 +6,20 @@
 //
 
 import UIKit
-
+class Downloader{
+    class func downloadImageWithURL(url: String) -> UIImage{
+        let data = NSData(contentsOf: NSURL(string: url)! as URL)
+        return UIImage(data: data! as Data)!
+        
+    }
+}
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
-    var users = UserRepo().getUsers()
+
+    var users2 = [User]()
+
+    @IBOutlet weak var userTableView: UITableView!
+    let itemsPerBatch = 15
+    var currentRow: Int = 1
     
     override func viewDidLoad() {
         //super.viewDidLoad()
@@ -21,18 +32,21 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Do any additional setup after loading the view.
     }
     
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        
-        return users.count
+        print(users2.count)
+        return users2.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "User", for: indexPath) as! HomeTableViewCell
-        cell.userName.text = "\(users[indexPath.row].userFirstName)  \(users[indexPath.row].userLastName)"
-        cell.userEmail.text = users[indexPath.row].userEmail
-        cell.userImage.image = UIImage(named: users[indexPath.row].userAvatar)
+        cell.userName.text = "\(users2[indexPath.row].first_name)  \(users2[indexPath.row].last_name)"
+        cell.userEmail.text = users2[indexPath.row].email
+
+        cell.userImage.image = Downloader.downloadImageWithURL(url: users2[indexPath.row].avatar)
+
        
         print("here")
         return cell
@@ -69,6 +83,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func extractData(data: Data){
         print("Got data!")
         hideIndicator()
+        let users = try? JSONDecoder().decode(Result.self, from: data)
+        print(users?.total)
+        self.users2 = users!.data
+        userTableView.reloadData()
     }
 
     

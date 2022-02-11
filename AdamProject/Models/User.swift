@@ -6,18 +6,27 @@
 //
 
 import Foundation
-class User
+class User : Decodable
 {
-    var userFirstName: String
-    var userLastName: String
-    var userAvatar: String
-    var userEmail: String
+    var id: Int?
+    var first_name: String
+    var last_name: String
+    var avatar: String
+    var email: String
     
     init(image: String, first: String, last: String){
-        userFirstName = first
-        userLastName = last
-        userAvatar = image
-        userEmail = "\(first.prefix(1))\(last)@galaxe.com"
+        first_name = first
+        last_name = last
+        avatar = image
+        email = "\(first.prefix(1))\(last)@galaxe.com"
+        id = nil
     }
 
+
 }
+class Result: Decodable{
+    let total: Int
+    let data: [User]
+    
+}
+
