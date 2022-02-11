@@ -17,7 +17,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         gradientLayer.colors = [#colorLiteral(red: 0.1529411765, green: 0.6666666667, blue: 0.8823529412, alpha: 1).cgColor, #colorLiteral(red: 0.06274509804, green: 0.4470588235, blue: 0.7294117647, alpha: 1).cgColor]
         gradientLayer.shouldRasterize = true
         self.view.layer.insertSublayer(gradientLayer, at: 0)
-
+        getUsersList()
         // Do any additional setup after loading the view.
     }
     
@@ -38,8 +38,38 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
         
     }
-    
+    func getUsersList(){
+        if(!Utilities.isNetworkAvailable()){
+            showAlert(title: "No Network", message: "No Network. Please check your check your internet connection.")
+        }
+        showIndicator(message: "Getting Users")
+        let userURL = URL(string: BASE_URL+USERS)!
+        let userRequest = URLRequest(url: userURL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
+        
+        URLSession.shared.dataTask(with: userRequest){
+            (data, response, error) in
+            guard let Data = data, error == nil
+            else{
+                print(error as Any)
+                return
+            }
+            if let httpStatus = (response as? HTTPURLResponse){
+                if httpStatus.statusCode != 200{
+                    print(httpStatus.statusCode)
+                    return
+                }
+            }
+            DispatchQueue.main.async {
+                self.extractData(data: Data)
+            }
+            
 
+        }.resume()
+    }
+    func extractData(data: Data){
+        print("Got data!")
+        hideIndicator()
+    }
 
     
 

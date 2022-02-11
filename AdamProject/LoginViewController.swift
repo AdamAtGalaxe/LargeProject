@@ -41,7 +41,6 @@ class LoginViewController: UIViewController {
             showAlert(title: "Field Error", message: "Both Email and Password are mandatory")
             return
         }
-        print(Utilities.isNetworkAvailable() )
         if Utilities.isNetworkAvailable() == false{
             showAlert(title: "Network Alert", message: "Please check your network. You are not connected to the internet")
             //showIndicator(message: "test")
@@ -50,29 +49,41 @@ class LoginViewController: UIViewController {
         self.showIndicator(message: "Authenticating")
         
         let loginURL = BASE_URL + LOGIN
+    
         
         var loginRequest = URLRequest(url: URL(string: loginURL)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
         
-        let params = ["email" : emailField.text, "password": passwordField.text]
+        loginRequest.httpMethod = "POST"
+        
+        let params = ["email" : emailField.text!, "password": passwordField.text!]
+     
         
         loginRequest.httpBody = try?JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-        
+        print(loginRequest)
         URLSession.shared.dataTask(with: loginRequest){ (data, response, error) in
-           
+           print("here")
             guard let Data = data, error == nil else{
-                
+                print("here1")
                 return
             }
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200
+            let httpStatus = response as? HTTPURLResponse
+            if httpStatus?.statusCode != 200
             {
+                print(httpStatus!.statusCode)
                 return
             }
             DispatchQueue.main.async {
+                print("main")
                 self.getData(data: Data)
             }
         }.resume()
     }
     func getData(data: Data){
+        self.hideIndicator()
+        let response = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, String>
+        print(response)
+        var token = response!["token"]
+        print(token)
         return
     }
     /*
