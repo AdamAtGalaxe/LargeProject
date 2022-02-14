@@ -7,9 +7,9 @@
 
 import UIKit
 class Downloader{
-    class func downloadImageWithURL(url: String) -> UIImage{
-        let data = NSData(contentsOf: NSURL(string: url)! as URL)
-        return UIImage(data: data! as Data)!
+    class func downloadImageWithURL(url: String) -> Data{
+        let data = try? Data(contentsOf: NSURL(string: url)! as URL)
+        return data!
         
     }
 }
@@ -35,7 +35,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        print(users2.count)
+
         return users2.count
     }
     
@@ -44,11 +44,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "User", for: indexPath) as! HomeTableViewCell
         cell.userName.text = "\(users2[indexPath.row].first_name)  \(users2[indexPath.row].last_name)"
         cell.userEmail.text = users2[indexPath.row].email
+        users2[indexPath.row].photo = Downloader.downloadImageWithURL(url: users2[indexPath.row].avatar)
+        cell.userImage.image = UIImage(data: users2[indexPath.row].photo!)!
 
-        cell.userImage.image = Downloader.downloadImageWithURL(url: users2[indexPath.row].avatar)
-
-       
-        print("here")
         return cell
         
     }
@@ -84,21 +82,28 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         print("Got data!")
         hideIndicator()
         let users = try? JSONDecoder().decode(Result.self, from: data)
-        print(users?.total)
         self.users2 = users!.data
         userTableView.reloadData()
     }
 
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if userTableView.indexPathForSelectedRow?.row == 3 {
+            return false
+        }
+        
+        return true
     }
-    */
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "UserDetailSegue"{
+            let userDetailViewController = segue.destination as! UserDetailViewController
+            userDetailViewController.user = users2[userTableView.indexPathForSelectedRow!.row]
+        }
+
+    }
+
 
 }
