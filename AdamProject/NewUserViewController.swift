@@ -6,9 +6,21 @@
 //
 
 import UIKit
+protocol AddUserProtocolDelegate: AnyObject{
+    func cancelAddingUser(_ controller: NewUserViewController)
+    func addNewUser(_ controller: NewUserViewController, user: User)
+    
+}
 
 class NewUserViewController: UIViewController {
-
+    
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    @IBOutlet weak var email: UITextField!
+    
+    weak var addUserDelegate: AddUserProtocolDelegate?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let gradientLayer = CAGradientLayer()
@@ -18,6 +30,16 @@ class NewUserViewController: UIViewController {
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         // Do any additional setup after loading the view.
     }
+    
+
+    @IBAction func cancelAddingUser(_ sender: Any) {
+        addUserDelegate?.cancelAddingUser(self)
+    }
+    @IBAction func saveUser(_ sender: Any) {
+        let user = User(image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Jonah_Hill-4939_%28cropped%29_%28cropped%29.jpg/800px-Jonah_Hill-4939_%28cropped%29_%28cropped%29.jpg", first: firstName.text!, last: lastName.text!, myEmail: email.text!)
+        addUserDelegate?.addNewUser(self, user: user)
+    }
+    
     
 
     /*

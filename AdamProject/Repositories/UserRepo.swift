@@ -10,7 +10,7 @@ class UserRepo{
     
     func getUsers()->[User]{
         var users = [User]()
-        users.append(User(image: "Jimmy Mamba", first: "Joe", last: "Mamba"))
+        users.append(User(image: "Jimmy Mamba", first: "Joe", last: "Mamba", myEmail: ""))
         return users
     }
 }

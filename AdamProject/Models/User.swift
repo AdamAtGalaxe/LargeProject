@@ -15,11 +15,11 @@ class User : Decodable
     var email: String
     var photo: Data?
     
-    init(image: String, first: String, last: String){
+    init(image: String, first: String, last: String, myEmail: String){
         first_name = first
         last_name = last
         avatar = image
-        email = "\(first.prefix(1))\(last)@galaxe.com"
+        email = myEmail
         id = nil
     }
     enum CodingKeys: String, CodingKey{

@@ -48,44 +48,50 @@ class LoginViewController: UIViewController {
         }
         self.showIndicator(message: "Authenticating")
         
-        let loginURL = BASE_URL + LOGIN
+        let loginURL = URL(string: "https:reqres.in/api/login")
+        //BASE_URL + LOGIN
     
-        
-        var loginRequest = URLRequest(url: URL(string: loginURL)!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
+        var loginRequest = URLRequest(url: loginURL!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
         
         loginRequest.httpMethod = "POST"
+        loginRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let params = ["email" : emailField.text!, "password": passwordField.text!]
+        let params = ["email" : emailField.text!, "password": passwordField.text!] //as! Dictionary<String, String>
      
         
         loginRequest.httpBody = try?JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
         print(loginRequest)
         URLSession.shared.dataTask(with: loginRequest){ (data, response, error) in
-           print("here")
-            guard let Data = data, error == nil else{
-                print("here1")
+                guard error == nil else{
+                    print(error as Any)
+                    return
+                }
+            let status = (response as! HTTPURLResponse).statusCode
+            guard status == 200 else{
+                print(status)
                 return
             }
-            let httpStatus = response as? HTTPURLResponse
-            if httpStatus?.statusCode != 200
-            {
-                print(httpStatus!.statusCode)
-                return
-            }
-            DispatchQueue.main.async {
-                print("main")
-                self.getData(data: Data)
+            if let Data = data{
+                DispatchQueue.main.async {
+                    self.getData(data: Data)
+                }
             }
         }.resume()
     }
     func getData(data: Data){
         self.hideIndicator()
         let response = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, String>
-        print(response)
-        var token = response!["token"]
-        print(token)
+        let token = response!["token"]
+        print(token!)
+        
+        UserDefaults.standard.set(token, forKey: "TOKEN")
+        
+        self.performSegue(withIdentifier: "LoginSegue", sender: nil)
+        
         return
     }
+    
+
     /*
     // MARK: - Navigation
 

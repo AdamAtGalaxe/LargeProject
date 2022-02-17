@@ -13,7 +13,9 @@ class Downloader{
         
     }
 }
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddUserProtocolDelegate{
+
+    
 
     var users2 = [User]()
 
@@ -44,6 +46,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "User", for: indexPath) as! HomeTableViewCell
         cell.userName.text = "\(users2[indexPath.row].first_name)  \(users2[indexPath.row].last_name)"
         cell.userEmail.text = users2[indexPath.row].email
+        print(users2[indexPath.row].avatar)
         users2[indexPath.row].photo = Downloader.downloadImageWithURL(url: users2[indexPath.row].avatar)
         cell.userImage.image = UIImage(data: users2[indexPath.row].photo!)!
 
@@ -102,7 +105,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let userDetailViewController = segue.destination as! UserDetailViewController
             userDetailViewController.user = users2[userTableView.indexPathForSelectedRow!.row]
         }
+        if segue.identifier == "AddUserSegue"{
+            let addUserController = segue.destination as! NewUserViewController
+            addUserController.addUserDelegate = self
+            
+        }
 
+    }
+    func cancelAddingUser(_ controller: NewUserViewController) {
+        controller.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func addNewUser(_ controller: NewUserViewController, user: User) {
+        users2.insert(user, at:0)
+        controller.dismiss(animated: true, completion: nil)
+        userTableView.reloadData()
+        
     }
 
 
