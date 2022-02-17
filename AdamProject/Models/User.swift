@@ -16,10 +16,12 @@ class User : Decodable
     var photo: Data?
     
     init(image: String, first: String, last: String, myEmail: String){
+        print("constructor")
         first_name = first
         last_name = last
         avatar = image
         email = myEmail
+        photo = Downloader.downloadImageWithURL(url: avatar)
         id = nil
     }
     enum CodingKeys: String, CodingKey{
@@ -36,4 +38,7 @@ class Result: Decodable{
     let data: [User]
     
 }
-
+class Result2: Decodable{
+    let data: User
+    
+}
