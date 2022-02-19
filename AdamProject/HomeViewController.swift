@@ -15,9 +15,7 @@ class Downloader{
 }
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddUserProtocolDelegate{
 
-    
-
-    var users2 = [User]()
+    var users2 : [User] = []
 
     @IBOutlet weak var userTableView: UITableView!
     let itemsPerBatch = 15
@@ -30,14 +28,22 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         gradientLayer.colors = [#colorLiteral(red: 0.1529411765, green: 0.6666666667, blue: 0.8823529412, alpha: 1).cgColor, #colorLiteral(red: 0.06274509804, green: 0.4470588235, blue: 0.7294117647, alpha: 1).cgColor]
         gradientLayer.shouldRasterize = true
         self.view.layer.insertSublayer(gradientLayer, at: 0)
-        getUsersList()
+
+        //users2 = await Database.getUsersList(myView: self)
+
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        Task{
+            showIndicator(message: "Getting Users")
+            users2 = try await Database.getUsersList(myView: self)
+            userTableView.reloadData()
+            hideIndicator()
+        }
     }
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-
         return users2.count
     }
     
@@ -51,43 +57,8 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.userImage.image = UIImage(data: users2[indexPath.row].photo!)!
 
         return cell
-        
     }
-    func getUsersList(){
-        if(!Utilities.isNetworkAvailable()){
-            showAlert(title: "No Network", message: "No Network. Please check your check your internet connection.")
-        }
-        showIndicator(message: "Getting Users")
-        let userURL = URL(string: BASE_URL+USERS)!
-        let userRequest = URLRequest(url: userURL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
-        
-        URLSession.shared.dataTask(with: userRequest){
-            (data, response, error) in
-            guard let Data = data, error == nil
-            else{
-                print(error as Any)
-                return
-            }
-            if let httpStatus = (response as? HTTPURLResponse){
-                if httpStatus.statusCode != 200{
-                    print(httpStatus.statusCode)
-                    return
-                }
-            }
-            DispatchQueue.main.async {
-                self.extractData(data: Data)
-            }
-            
 
-        }.resume()
-    }
-    func extractData(data: Data){
-        print("Got data!")
-        hideIndicator()
-        let users = try? JSONDecoder().decode(Result.self, from: data)
-        self.users2 = users!.data
-        userTableView.reloadData()
-    }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if userTableView.indexPathForSelectedRow?.row == 3 {

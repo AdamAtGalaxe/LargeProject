@@ -46,13 +46,13 @@ class ProfileViewController: UIViewController {
                 }
             }
             DispatchQueue.main.async {
-                self.extractData(data: Data)
+                self.extractThisData(data: Data)
             }
             
 
         }.resume()
     }
-    func extractData(data: Data){
+    func extractThisData(data: Data){
         print("Got data!")
         hideIndicator()
         let user1 = try? JSONDecoder().decode(Result2.self, from: data)

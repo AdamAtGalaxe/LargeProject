@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIViewController{
+    
     func showAlert(title: String, message: String, okButton: String = "OK"){
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -51,4 +52,9 @@ extension UIViewController{
         self.view.viewWithTag(1001)?.removeFromSuperview()
         self.view.viewWithTag(1002)?.removeFromSuperview()
     }
+    func extractData(data: Data){
+        print("Do me!")
+
+    }
+    
 }
