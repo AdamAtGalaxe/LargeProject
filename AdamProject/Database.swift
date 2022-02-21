@@ -13,11 +13,50 @@ class Database{
         return data!
         
     }
+    class func register(email: String, password: String, myView : UIViewController){
+    
+        myView.showIndicator(message: "Authenticating")
+        
+        let registrationURL = URL(string: BASE_URL + REGISTER)
+        //BASE_URL + LOGIN
+    
+        var registrationRequest = URLRequest(url: registrationURL!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
+        
+        registrationRequest.httpMethod = "POST"
+        registrationRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let params = ["email" : email, "password": password] //as! Dictionary<String, String>
+     
+        
+        registrationRequest.httpBody = try?JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+        print(registrationRequest)
+        URLSession.shared.dataTask(with: registrationRequest){ (data, response, error) in
+                guard error == nil else{
+                    print(error as Any)
+                    return
+                }
+            let status = (response as! HTTPURLResponse).statusCode
+            print("status: \(status)")
+            
+            guard status == 200 else{
+                DispatchQueue.main.async {
+                    failedLogin(data: data!, myView: myView)
+                }
+                return
+            }
+            if let Data = data{
+                DispatchQueue.main.async {
+                    successfullLogin(data: Data, myView: myView)
+                }
+            }
+        }.resume()
+        
+    }
     class func login(email: String, password: String, myView : UIViewController){
     
         myView.showIndicator(message: "Authenticating")
         
-        let loginURL = URL(string: "https:reqres.in/api/login")
+        let loginURL = URL(string: BASE_URL + LOGIN)
         //BASE_URL + LOGIN
     
         var loginRequest = URLRequest(url: loginURL!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
@@ -37,56 +76,73 @@ class Database{
                 }
             let status = (response as! HTTPURLResponse).statusCode
             guard status == 200 else{
-                print(status)
+                DispatchQueue.main.async {
+                    failedLogin(data: data!, myView: myView)
+                }
                 return
             }
             if let Data = data{
                 DispatchQueue.main.async {
-                    Database.getData(data: Data, myView: myView)
+                    print("HEEREE!")
+                    print("data \(data!)")
+                    successfullLogin(data: Data, myView: myView)
                 }
             }
         }.resume()
         
     }
-    class func getData(data: Data, myView: UIViewController ){
+    class func successfullLogin(data: Data, myView: UIViewController ){
         myView.hideIndicator()
-        let response = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, String>
+        let response = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, Any>
+        print("response: \(response!)")
         let token = response!["token"]
-        print(token!)
-        
         UserDefaults.standard.set(token, forKey: "TOKEN")
         
         myView.performSegue(withIdentifier: "LoginSegue", sender: nil)
         
         return
     }
+    class func failedLogin(data: Data, myView: UIViewController ){
+        myView.hideIndicator()
+        myView.showAlert(title: "Error", message: "Username or password is incorrect. Please check them and try again.")
+        return
+    }
     class func isNetworkAvailable() -> Bool{
         return (Reachability.init(hostname: "\(BASE_URL)")?.isReachable)!
-        //return (Reachability.init(hostname: BASE_URL)?.isReachable)!
     }
     
     
-        class func getUsersList(myView: UIViewController) async throws -> [User]{
-            if(!Utilities.isNetworkAvailable()){
-                await myView.showAlert(title: "No Network", message: "No Network. Please check your check your internet connection.")
-            }
-            let userURL = URL(string: BASE_URL+USERS)!
-            //let userRequest = URLRequest(url: userURL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
-            
-            let (data, response) = try await URLSession.shared.data(from: userURL)
-            
-            guard let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else{
-                      print("error")
-                      return []
-                  }
-            let userData = try? JSONDecoder().decode(Result.self, from: data)
-            print(userData!.data[0].first_name)
-            return userData!.data
-
+    class func getUsersList(myView: UIViewController) async throws -> [User]{
+        if(!Utilities.isNetworkAvailable()){
+            await myView.showAlert(title: "No Network", message: "No Network. Please check your check your internet connection.")
         }
+        let userURL = URL(string: BASE_URL+USERS)!
+        let (data, response) = try await URLSession.shared.data(from: userURL)
+            
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else{
+            print("error")
+            return []
+        }
+        let userData = try? JSONDecoder().decode(Result.self, from: data)
+        print(userData!.data[0].first_name)
+        return userData!.data
+    }
 
-    
-    
-    
+    class func getIndividualUser(myView: UIViewController) async throws-> User?{
+        if(!Utilities.isNetworkAvailable()){
+            await myView.showAlert(title: "No Network", message: "No Network. Please check your check your internet connection.")
+        }
+        let userURL = URL(string: BASE_URL+INDIVIDUAL)!
+  
+        let (data, response) = try await URLSession.shared.data(from: userURL)
+            
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else{
+            return nil
+        }
+        let userData = try? JSONDecoder().decode(Result2.self, from: data)
+        return userData!.data
+
+    }
+
+  
 }

@@ -34,7 +34,6 @@ class User : Decodable
 
 }
 class Result: Decodable{
-    let total: Int
     let data: [User]
     
 }
@@ -42,3 +41,4 @@ class Result2: Decodable{
     let data: User
     
 }
+

@@ -10,6 +10,12 @@ import UIKit
 class RegisterViewController: UIViewController {
 
     @IBOutlet weak var myButton: UIButton!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
+    
+    
+    
     override func viewDidLoad() {
     
             super.viewDidLoad()
@@ -22,7 +28,17 @@ class RegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func registerUser(_ sender: Any) {
+        if !emailField.text!.isValidEmail{
+            showAlert(title: "Error", message: "Email is not a correct email")
+            return
+        }
+        if emailField.text == nil || passwordField.text == nil {
+            showAlert(title: "Error", message: "Email and password are required")
+        }
+        Database.register(email: emailField!.text!, password: passwordField!.text!, myView: self)
+    }
+    
     @IBAction func buttonPress(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         
