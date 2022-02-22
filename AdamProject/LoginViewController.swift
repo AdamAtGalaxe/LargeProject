@@ -15,7 +15,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var backgroundGradientView: UIView!
     
     override func viewDidLoad() {
-        //showAlert(title: "Test", message: "test")
+
         super.viewDidLoad()
 
         let gradientLayer = CAGradientLayer()
@@ -28,7 +28,6 @@ class LoginViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if UserDefaults.standard.object(forKey: "TOKEN") != nil {
-            print("here")
             performSegue(withIdentifier: "LoginSegue", sender: nil)
         }
     }
@@ -36,9 +35,7 @@ class LoginViewController: UIViewController {
     @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue){
         passwordField.text = ""
         emailField.text = ""
-        
         UserDefaults.standard.removeObject(forKey: "TOKEN")
-        
     }
     
     @IBAction func loginUser(_ sender: Any) {
@@ -46,7 +43,7 @@ class LoginViewController: UIViewController {
             showAlert(title: "Field Error", message: "Email is not a valid email address")
             return
         }
-        if passwordField.text!.isEmpty {
+        if passwordField.text!.isEmpty || emailField.text!.isEmpty {
             showAlert(title: "Field Error", message: "Both Email and Password are mandatory")
             return
         }

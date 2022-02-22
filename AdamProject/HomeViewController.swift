@@ -6,13 +6,7 @@
 //
 
 import UIKit
-class Downloader{
-    class func downloadImageWithURL(url: String) -> Data{
-        let data = try? Data(contentsOf: NSURL(string: url)! as URL)
-        return data!
-        
-    }
-}
+
 class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddUserProtocolDelegate{
 
     var users : [User] = []
@@ -47,7 +41,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: "User", for: indexPath) as! HomeTableViewCell
         cell.userName.text = "\(users[indexPath.row].first_name)  \(users[indexPath.row].last_name)"
         cell.userEmail.text = users[indexPath.row].email
-        users[indexPath.row].photo = Downloader.downloadImageWithURL(url: users[indexPath.row].avatar)
+        users[indexPath.row].photo = Database.downloadImageWithURL(url: users[indexPath.row].avatar)
         cell.userImage.image = UIImage(data: users[indexPath.row].photo!)!
         
         cell.userImage.layer.cornerRadius = cell.userImage.frame.height/2

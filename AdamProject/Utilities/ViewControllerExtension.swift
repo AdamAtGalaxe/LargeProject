@@ -52,9 +52,5 @@ extension UIViewController{
         self.view.viewWithTag(1001)?.removeFromSuperview()
         self.view.viewWithTag(1002)?.removeFromSuperview()
     }
-    func extractData(data: Data){
-        print("Do me!")
-
-    }
     
 }

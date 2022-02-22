@@ -30,11 +30,16 @@ class RegisterViewController: UIViewController {
     
     @IBAction func registerUser(_ sender: Any) {
         if !emailField.text!.isValidEmail{
-            showAlert(title: "Error", message: "Email is not a correct email")
+            showAlert(title: "Field Error", message: "Email is not a valid email address")
             return
         }
-        if emailField.text == nil || passwordField.text == nil {
-            showAlert(title: "Error", message: "Email and password are required")
+        if passwordField.text!.isEmpty || emailField.text!.isEmpty{
+            showAlert(title: "Field Error", message: "Both Email and Password are mandatory")
+            return
+        }
+        if !Database.isNetworkAvailable(){
+            showAlert(title: "Network Alert", message: "Please check your network. You are not connected to the internet")
+            return
         }
         Database.register(email: emailField!.text!, password: passwordField!.text!, myView: self)
     }

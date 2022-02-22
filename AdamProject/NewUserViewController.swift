@@ -36,6 +36,18 @@ class NewUserViewController: UIViewController {
         addUserDelegate?.cancelAddingUser(self)
     }
     @IBAction func saveUser(_ sender: Any) {
+        if !email.text!.isValidEmail{
+            showAlert(title: "Field Error", message: "Email is not a valid email address")
+            return
+        }
+        if firstName.text!.isEmpty || lastName.text!.isEmpty || email.text!.isEmpty {
+            showAlert(title: "Field Error", message: "Both Email and Password are mandatory")
+            return
+        }
+        if !Database.isNetworkAvailable(){
+            showAlert(title: "Network Alert", message: "Please check your network. You are not connected to the internet")
+            return
+        }
         let user = User(image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Jonah_Hill-4939_%28cropped%29_%28cropped%29.jpg/800px-Jonah_Hill-4939_%28cropped%29_%28cropped%29.jpg", first: firstName.text!, last: lastName.text!, myEmail: email.text!)
         addUserDelegate?.addNewUser(self, user: user)
     }

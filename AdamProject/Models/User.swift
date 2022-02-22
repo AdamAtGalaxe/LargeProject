@@ -21,7 +21,7 @@ class User : Decodable
         last_name = last
         avatar = image
         email = myEmail
-        photo = Downloader.downloadImageWithURL(url: avatar)
+        photo = Database.downloadImageWithURL(url: avatar)
         id = nil
     }
     enum CodingKeys: String, CodingKey{

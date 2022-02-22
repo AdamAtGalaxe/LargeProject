@@ -28,7 +28,7 @@ class ProfileViewController: UIViewController {
             firstNameLabel.text = user!.first_name
             lastNameLabel.text = user!.last_name
             emailLabel.text = user!.email
-            user!.photo = Downloader.downloadImageWithURL(url: user!.avatar)
+            user!.photo = Database.downloadImageWithURL(url: user!.avatar)
             userImage.image = UIImage(data: user!.photo!)!
             
             

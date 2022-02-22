@@ -18,26 +18,20 @@ class Database{
         myView.showIndicator(message: "Authenticating")
         
         let registrationURL = URL(string: BASE_URL + REGISTER)
-        //BASE_URL + LOGIN
-    
         var registrationRequest = URLRequest(url: registrationURL!, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 30)
+        let params = ["email" : email, "password": password]
         
         registrationRequest.httpMethod = "POST"
         registrationRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let params = ["email" : email, "password": password] //as! Dictionary<String, String>
+
      
-        
         registrationRequest.httpBody = try?JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-        print(registrationRequest)
         URLSession.shared.dataTask(with: registrationRequest){ (data, response, error) in
                 guard error == nil else{
                     print(error as Any)
                     return
                 }
             let status = (response as! HTTPURLResponse).statusCode
-            print("status: \(status)")
-            
             guard status == 200 else{
                 DispatchQueue.main.async {
                     failedLogin(data: data!, myView: myView)
@@ -68,7 +62,6 @@ class Database{
      
         
         loginRequest.httpBody = try?JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-        print(loginRequest)
         URLSession.shared.dataTask(with: loginRequest){ (data, response, error) in
                 guard error == nil else{
                     print(error as Any)
@@ -83,8 +76,6 @@ class Database{
             }
             if let Data = data{
                 DispatchQueue.main.async {
-                    print("HEEREE!")
-                    print("data \(data!)")
                     successfullLogin(data: Data, myView: myView)
                 }
             }
@@ -94,7 +85,6 @@ class Database{
     class func successfullLogin(data: Data, myView: UIViewController ){
         myView.hideIndicator()
         let response = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? Dictionary<String, Any>
-        print("response: \(response!)")
         let token = response!["token"]
         UserDefaults.standard.set(token, forKey: "TOKEN")
         
@@ -113,7 +103,7 @@ class Database{
     
     
     class func getUsersList(myView: UIViewController) async throws -> [User]{
-        if(!Utilities.isNetworkAvailable()){
+        if(!Database.isNetworkAvailable()){
             await myView.showAlert(title: "No Network", message: "No Network. Please check your check your internet connection.")
         }
         let userURL = URL(string: BASE_URL+USERS)!
@@ -124,12 +114,11 @@ class Database{
             return []
         }
         let userData = try? JSONDecoder().decode(Result.self, from: data)
-        print(userData!.data[0].first_name)
         return userData!.data
     }
 
     class func getIndividualUser(myView: UIViewController) async throws-> User?{
-        if(!Utilities.isNetworkAvailable()){
+        if(!Database.isNetworkAvailable()){
             await myView.showAlert(title: "No Network", message: "No Network. Please check your check your internet connection.")
         }
         let userURL = URL(string: BASE_URL+INDIVIDUAL)!
